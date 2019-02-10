@@ -17,6 +17,16 @@ const UserType = new GraphQLObjectType({
     }
 });
 
+const CompanyType = new GraphQLObjectType ({
+  name: 'Company',
+  fields: {
+    id: {type: GraphQLString},
+    firstName: {type: GraphQLString},
+    description: {type: GraphQLString},
+  },
+});
+
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
@@ -26,7 +36,7 @@ const RootQuery = new GraphQLObjectType({
             resolve(parentValue, args){
                 return axios.get(`http://localhost:3000/users/${args.id}`)
                 .then(res => res.data);
-                
+
             }
         }
     }
